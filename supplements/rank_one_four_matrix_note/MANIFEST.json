@@ -1,0 +1,52 @@
+{
+  "project": "rank_one_four_matrix_note",
+  "prepared_utc_date": "2026-10-10",
+  "purpose": "Computational supplement to the manuscript at ../../latex/rank_one_four_matrix_note/main.tex",
+  "runtime": {
+    "python": "3.12.14",
+    "assertions_enabled": true,
+    "test_working_directory": "Unrelated temporary directory"
+  },
+  "verification_status": "All supplied checkers rerun successfully",
+  "checks": [
+    {
+      "script": "verify_rankone_n4.py",
+      "exit_code": 0
+    },
+    {
+      "script": "check_certificate.py",
+      "exit_code": 0
+    }
+  ],
+  "review_boundary": "Computational reproduction only; no human review, external peer review, or novelty assessment is attested",
+  "documentation_only_changes": [
+    "verify_rankone_n4.py: introductory documentation identifies the corresponding manuscript source in the combined bundle"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3103,
+      "sha256": "be595ae3ebe69a7496fc34d43e339a295a96ba8451346303058661bec012c783"
+    },
+    {
+      "path": "check_certificate.py",
+      "bytes": 5776,
+      "sha256": "08d39656e40d1f6a4eda1722e95830375bb9cec370cfe4b174bde9dd7dd6d2d2"
+    },
+    {
+      "path": "exact_audit_result.json",
+      "bytes": 891,
+      "sha256": "819d491240441c7b1d35518d51bef585789005d1ac33c583a423bd8d5bb72966"
+    },
+    {
+      "path": "rankone_n4_exact_scales.json",
+      "bytes": 49189,
+      "sha256": "14ddfdbca54628f35920459e51077309300932e8978b3371063073e069a32067"
+    },
+    {
+      "path": "verify_rankone_n4.py",
+      "bytes": 3076,
+      "sha256": "8f1e8b372a80f4e605906f78eb7b0e396a2b434e46cda5e09dbb2d42eaa07a03"
+    }
+  ]
+}

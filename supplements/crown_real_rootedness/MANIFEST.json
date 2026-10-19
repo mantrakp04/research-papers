@@ -1,0 +1,53 @@
+{
+  "project": "crown_real_rootedness",
+  "prepared_utc_date": "2026-10-10",
+  "purpose": "Computational supplement to the manuscript at ../../latex/crown_real_rootedness/main.tex",
+  "runtime": {
+    "python": "3.12.14",
+    "assertions_enabled": true,
+    "test_working_directory": "Unrelated temporary directory",
+    "optional_sturm_dependency": "SymPy 1.14.0"
+  },
+  "verification_status": "All supplied checkers rerun successfully",
+  "checks": [
+    {
+      "script": "verify_full_certificate.py",
+      "exit_code": 0
+    },
+    {
+      "script": "independent_sturm_check.py",
+      "exit_code": 0
+    }
+  ],
+  "review_boundary": "Computational reproduction only; no human review, external peer review, or novelty assessment is attested",
+  "documentation_only_changes": [
+    "verify_full_certificate.py: introductory documentation identifies the corresponding manuscript source in the combined bundle"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3530,
+      "sha256": "fe0aadd14063ebba92a7fc8eddcd7747fe5a44212fa9ffac4802714231d64e76"
+    },
+    {
+      "path": "finite_sign_certificates.json",
+      "bytes": 90228,
+      "sha256": "9bb119f040fa1a8e883c9e6a648257f93446f3e6e5e1af5c940c1371d481e4d6"
+    },
+    {
+      "path": "independent_sturm_check.py",
+      "bytes": 2661,
+      "sha256": "baa9a18240ce19d4824373b0ad37575e57307c9595b4ccd6cbc0ba981b7d8f1c"
+    },
+    {
+      "path": "independent_sturm_results.json",
+      "bytes": 33326,
+      "sha256": "14793aeb0d71b25ad24422b8c044c42e7921e0e0bf6c72833a4ce573681d1f47"
+    },
+    {
+      "path": "verify_full_certificate.py",
+      "bytes": 2716,
+      "sha256": "4787d9faa4a1e530329142ed343745ae148c97d32b4667c7cf1479ac3a6d6ba3"
+    }
+  ]
+}

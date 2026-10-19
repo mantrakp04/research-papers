@@ -1,0 +1,94 @@
+{
+  "project": "graph_state_mmi",
+  "prepared_utc_date": "2026-10-10",
+  "purpose": "Computational supplement to the manuscript at ../../latex/graph_state_mmi/main.tex",
+  "runtime": {
+    "python": "3.12.14",
+    "assertions_enabled": true,
+    "test_working_directory": "Unrelated temporary directory"
+  },
+  "verification_status": "All supplied checkers rerun successfully",
+  "checks": [
+    {
+      "script": "claw_classification/check_orbit_certificate.py",
+      "exit_code": 0
+    },
+    {
+      "script": "claw_classification/verify.py",
+      "exit_code": 0
+    },
+    {
+      "script": "independent_audit.py",
+      "exit_code": 0
+    },
+    {
+      "script": "independent_cycle_audit.py",
+      "exit_code": 0
+    }
+  ],
+  "review_boundary": "Computational reproduction only; no human review, external peer review, or novelty assessment is attested",
+  "documentation_only_changes": [],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3779,
+      "sha256": "f83401d8d9a2f8f1d66d64dcde8c34d060bfffc13092248d514ab6474ce34a09"
+    },
+    {
+      "path": "claw_classification/audit_result.json",
+      "bytes": 4627,
+      "sha256": "88fb6c1a393d2dab5aa1d992272cd2ab5f5da2446739c595d357a7680532ffea"
+    },
+    {
+      "path": "claw_classification/check_orbit_certificate.py",
+      "bytes": 2418,
+      "sha256": "f3c4e1681ba6b236d4deff4cedc8900fc58f2b3d2a275b5e698c746cb0d9812a"
+    },
+    {
+      "path": "claw_classification/extension_certificate.json",
+      "bytes": 18396,
+      "sha256": "2f5dbd795605924131fe54853a63c8eba85d031a2b3e6ee670ce5e8ea33cb33f"
+    },
+    {
+      "path": "claw_classification/orbit_certificate.json",
+      "bytes": 64695,
+      "sha256": "97902bcc90516e6d71d1dc66540ac964334f7da16809f41adbd1063cf6b6cde7"
+    },
+    {
+      "path": "claw_classification/verify.py",
+      "bytes": 4945,
+      "sha256": "19d09d6b40b84fd28ae3b7a65ca97386c500f391abba1882573c336cb9db27ce"
+    },
+    {
+      "path": "independent_audit.py",
+      "bytes": 5432,
+      "sha256": "48e31dbf201ed61a26afc1ea6be7f16c230fd050702ffdb6b4647c339bdebb82"
+    },
+    {
+      "path": "independent_audit_results.json",
+      "bytes": 2560,
+      "sha256": "df873654e6d2438903a02918f362f89d59daa6fd3100b4b903b1e1219523d3f5"
+    },
+    {
+      "path": "independent_cycle_audit.py",
+      "bytes": 4397,
+      "sha256": "f7d67b85f66d797ea7e201a61e6398531edd1ab6178ee7b92b78622de55e029f"
+    },
+    {
+      "path": "independent_cycle_results.json",
+      "bytes": 2686,
+      "sha256": "8ca1031667ba101e95ad14e24a0adc89baceaea07cde790415e720ceefc084e7"
+    },
+    {
+      "path": "path_automaton.py",
+      "bytes": 1939,
+      "sha256": "abf4634c62fff6d21737da4a3a9319b6936465517ecda750fec2774ccf686838"
+    },
+    {
+      "path": "path_certificate.json",
+      "bytes": 19320,
+      "sha256": "13610eda90eb35c1c90afacd6ca9d41e64a4a6f5779caa968d36acbacd4fecd3"
+    }
+  ],
+  "additional_check": "path_automaton.py rerun in isolation; regenerated JSON structure exactly matches the supplied path certificate"
+}

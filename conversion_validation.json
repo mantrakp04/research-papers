@@ -1,0 +1,58 @@
+{
+  "graph_state_mmi": {
+    "bytes": 35791,
+    "theorem_proof_counts": {
+      "theorem": 3,
+      "lemma": 4,
+      "proof": 7,
+      "proposition": 1
+    },
+    "math_expressions": 382,
+    "citation_occurrences": 17,
+    "references": 8,
+    "labels_resolved": 22,
+    "raw_latex_blocks": []
+  },
+  "polygon_ehrhart": {
+    "bytes": 16264,
+    "theorem_proof_counts": {
+      "theorem": 1,
+      "lemma": 3,
+      "proof": 4,
+      "proposition": 1
+    },
+    "math_expressions": 136,
+    "citation_occurrences": 9,
+    "references": 5,
+    "labels_resolved": 17,
+    "raw_latex_blocks": []
+  },
+  "crown_real_rootedness": {
+    "bytes": 33676,
+    "theorem_proof_counts": {
+      "theorem": 1,
+      "lemma": 14,
+      "proof": 20,
+      "proposition": 4
+    },
+    "math_expressions": 433,
+    "citation_occurrences": 9,
+    "references": 5,
+    "labels_resolved": 62,
+    "raw_latex_blocks": []
+  },
+  "rank_one_four_matrix_note": {
+    "bytes": 16702,
+    "theorem_proof_counts": {
+      "theorem": 1,
+      "proposition": 1,
+      "proof": 2,
+      "lemma": 1
+    },
+    "math_expressions": 113,
+    "citation_occurrences": 4,
+    "references": 4,
+    "labels_resolved": 20,
+    "raw_latex_blocks": []
+  }
+}

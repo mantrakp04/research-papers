@@ -1,0 +1,49 @@
+{
+  "certificate_sha256": "14ddfdbca54628f35920459e51077309300932e8978b3371063073e069a32067",
+  "power_monomials": 130,
+  "bernstein_indices": 4096,
+  "permutation_orbits": 276,
+  "coefficientwise_nonnegative_orbits": 36,
+  "weighted_amgm_orbits": 240,
+  "coefficientwise_nonnegative_indices": 370,
+  "weighted_amgm_indices": 3726,
+  "minimum_relative_margin": "0",
+  "zero_margin_orbits": [
+    [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  ],
+  "minimum_positive_relative_margin": "4192514875909/99262215725000",
+  "derived_scaled_bernstein_conversion": [
+    [
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      1,
+      0,
+      0
+    ],
+    [
+      3,
+      2,
+      1,
+      0
+    ],
+    [
+      3,
+      3,
+      3,
+      3
+    ]
+  ],
+  "status": "PASS: exact exhaustive coefficients, symmetry, orbit coverage, resource bounds, balance, and AM-GM gaps"
+}

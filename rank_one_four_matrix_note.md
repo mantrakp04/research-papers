@@ -1,0 +1,313 @@
+# An exact rank one certificate for four matrix products
+
+Mantra Patel
+
+10 October 2026
+
+## Abstract
+
+For four positive-semidefinite matrices of rank at most one, the average norm of a product of four independently sampled factors is at least the average over permutations of the four factors. The assertion holds in every positive finite dimension, for every unitarily invariant norm, and with arbitrary nonnegative eigenvalue scales. A rank-one reduction leads to a scalar polynomial on a six-dimensional cube. Its tensor-product Bernstein coefficients are certified by nonnegative coefficients or exact weighted arithmetic-geometric mean inequalities. A supplied integer certificate and two separately implemented Python checkers cover all 4096 Bernstein indices. The result is restricted to four rank-one factors and does not resolve the conjecture for general positive-semidefinite matrices.
+
+**Keywords:** positive-semidefinite matrices; rank-one matrices; unitarily invariant norms; Bernstein basis; arithmetic-geometric mean inequality.
+
+<a id="question-and-scope"></a>
+
+## 1 Question and scope
+
+Let $A_1,\ldots,A_n$ be positive-semidefinite matrices of a common size, let $1\le m\le n$, and let $\mathcal N$ be a unitarily invariant norm, meaning $\mathcal N(UXV)=\mathcal N(X)$ for all unitary $U,V$. The expectation-of-product-norm inequality is <a id="eq:general"></a>
+
+$$
+\frac{1}{n^m}\sum_{i_1,\ldots,i_m=1}^n
+ \mathcal N(A_{i_1}\cdots A_{i_m})
+\ \ge\ \frac{1}{(n)_m}\sum_{\substack{i_1,\ldots,i_m\in\{1,\ldots,n\}\\\text{all distinct}}}
+ \mathcal N(A_{i_1}\cdots A_{i_m}),
+$$
+
+**Equation (1)**
+
+where $(n)_m=n(n-1)\cdots(n-m+1)$. The sampling is uniform, and distinct-index tuples are ordered.
+
+Duchi’s commentary \[[1](#ref-duchi)\] proposes the norm-inside-expectation variant in the operator norm. Israel, Krahmer, and Ward \[[2](#ref-ikw)\] prove the unitarily invariant norm version for $m\le3$. Section 28 of Georgiev, Gómez-Serrano, Tao, and Wagner \[[3](#ref-ggtw)\] records the general case $m\ge4$ as open in 2025. The present note supplies only the rank-at-most-one, $n=m=4$ case. A bounded literature search associated with this work found no exact match for this restricted statement; that does not establish novelty or an exhaustive current status of the literature.
+
+The related Recht–Ré formulation \[[4](#ref-rr)\] compares the norms of the two *averages of products*. In [(1)](#eq:general), the norm is evaluated *before* averaging. The proof here concerns only [(1)](#eq:general); it is not a proof of the norm-outside-average formulation.
+
+<a id="the-restricted-matrix-statement"></a>
+
+## 2 The restricted matrix statement
+
+<a id="thm:matrix"></a>
+
+**Theorem 1**. Let $d\ge1$ and let $A_0,A_1,A_2,A_3\in\mathbb C^{d\times d}$ be Hermitian positive-semidefinite matrices satisfying $\operatorname{rank}A_i\le1$. For every unitarily invariant norm $\mathcal N$ on $\mathbb C^{d\times d}$, <a id="eq:matrix"></a>
+
+$$
+\frac1{256}\sum_{i,j,k,l=0}^3\mathcal N(A_iA_jA_kA_l)
+\ \ge\ \frac1{24}\sum_{\sigma\in S_4}
+\mathcal N(A_{\sigma(0)}A_{\sigma(1)}A_{\sigma(2)}A_{\sigma(3)}).
+$$
+
+**Equation (2)**
+
+The nonzero eigenvalues of the $A_i$ need not be equal.
+
+Real symmetric matrices, with an orthogonally invariant norm, obey the same proof. No normalization of the norm or matrices is required.
+
+For the scalar reduction, put $V=\{0,1,2,3\}$ and order the six unordered edges as <a id="eq:edges"></a>
+
+$$
+E=((0,1),(0,2),(0,3),(1,2),(1,3),(2,3)).
+$$
+
+**Equation (3)**
+
+Let $\lambda=(\lambda_0,\ldots,\lambda_3)\in[0,\infty)^4$, and let $b\in[0,1]^6$ specify symmetric numbers $b_{ij}=b_{ji}$ for $i\ne j$, with $b_{ii}=1$. Define <a id="eq:T"></a><a id="eq:D"></a><a id="eq:F"></a>
+
+$$
+\begin{aligned}
+T(\lambda,b)&=\sum_{(i,j,k,l)\in V^4}
+ \lambda_i\lambda_j\lambda_k\lambda_l b_{ij}b_{jk}b_{kl},\\
+D(\lambda,b)&=\sum_{\sigma\in S_4}
+ \lambda_0\lambda_1\lambda_2\lambda_3
+ b_{\sigma(0)\sigma(1)}b_{\sigma(1)\sigma(2)}b_{\sigma(2)\sigma(3)},\\
+F(\lambda,b)&=24T(\lambda,b)-256D(\lambda,b).
+\end{aligned}
+$$
+
+**Equations (4), (5), (6)**
+
+<a id="prop:scalar"></a>
+
+**Proposition 2**. For every $\lambda\in[0,\infty)^4$ and $b\in[0,1]^6$, one has $F(\lambda,b)\ge0$.
+
+The edge weights in this proposition are independent. They are not required to be the absolute entries of a Gram matrix. Its proof is the finite exact certificate in Sections 3–5.
+
+*Deduction of Theorem [1](#thm:matrix) from Proposition [2](#prop:scalar).* Write $A_i=\lambda_i u_i u_i^*$, with $\lambda_i\ge0$ and $\|u_i\|_2=1$. For $A_i=0$, choose any unit $u_i$ and take $\lambda_i=0$. Set $b_{ij}=|u_i^*u_j|$, so $b_{ii}=1$ and $0\le b_{ij}\le1$ by Cauchy–Schwarz. Direct multiplication gives 
+
+$$
+A_iA_jA_kA_l=\lambda_i\lambda_j\lambda_k\lambda_l
+ (u_i^*u_j)(u_j^*u_k)(u_k^*u_l)u_i u_l^*.
+$$
+
+ The rank-one matrix $u_i u_l^*$ has sole nonzero singular value $1$. Unitary invariance and homogeneity therefore give, with $\kappa=\mathcal N(\operatorname{diag}(1,0,\ldots,0))>0$, <a id="eq:reduction"></a>
+
+$$
+\mathcal N(A_iA_jA_kA_l)=\kappa\lambda_i\lambda_j\lambda_k\lambda_l b_{ij}b_{jk}b_{kl}.
+$$
+
+**Equation (7)**
+
+Thus the left side of [(2)](#eq:matrix) minus its right side is $\kappa F/(256\cdot24)$, which is nonnegative by Proposition [2](#prop:scalar). ◻
+
+<a id="bernstein-reduction-and-symmetry"></a>
+
+## 3 Bernstein reduction and symmetry
+
+For a word $w=(w_0,w_1,w_2,w_3)\in V^4$, let $a(w)\in\{0,1,2,3,4\}^4$ count the appearances of each vertex. Let $e(w)\in\{0,1,2,3\}^6$ count the transitions across each edge in [(3)](#eq:edges), ignoring transitions from a vertex to itself. In particular, $|a(w)|=4$ and $|e(w)|\le3$. Using multi-index notation, <a id="eq:power"></a>
+
+$$
+F(\lambda,b)=\sum_{e,a}p_{e,a}\lambda^a b^e,\qquad
+p_{e,a}=\sum_{\substack{w\in V^4\\e(w)=e,\ a(w)=a}}
+\bigl(24-256\,\mathbf1_{\{w\text{ has four distinct entries}\}}\bigr).
+$$
+
+**Equation (8)**
+
+This formula reconstructs the polynomial without a precomputed coefficient table. Below, $\boldsymbol{1}=(1,1,1,1)$ and $\mathbf e_i$ is the $i$th standard coordinate vector in $\mathbb R^4$.
+
+Define $B_{k,3}(x)=\binom3k x^k(1-x)^{3-k}$ for $0\le k\le3$. For $0\le a\le3$, <a id="eq:conversion"></a>
+
+$$
+x^a=\sum_{k=a}^3\frac{\binom{k}{a}}{\binom3a}B_{k,3}(x).
+$$
+
+**Equation (9)**
+
+Indeed, $\binom3k\binom ka/\binom3a=\binom{3-a}{k-a}$, so the sum is $x^a(x+(1-x))^{3-a}$. Let $K_{k,a}=3\binom ka/\binom3a$, interpreting $\binom ka=0$ for $a>k$. Its integer matrix is <a id="eq:K"></a>
+
+$$
+K=\begin{pmatrix}3&0&0&0\\3&1&0&0\\3&2&1&0\\3&3&3&3\end{pmatrix}.
+$$
+
+**Equation (10)**
+
+Since each edge has degree at most three, [(9)](#eq:conversion) in six variables yields <a id="eq:bernstein"></a>
+
+$$
+F(\lambda,b)=\frac1{3^6}\sum_{k\in\{0,1,2,3\}^6}C_k(\lambda)
+ \prod_{r=1}^6B_{k_r,3}(b_r),\qquad
+C_k(\lambda)=\sum_{e,a}p_{e,a}\lambda^a\prod_{r=1}^6K_{k_r,e_r}.
+$$
+
+**Equation (11)**
+
+Every factor $B_{k_r,3}(b_r)$ is nonnegative on the cube. It consequently suffices to show $C_k(\lambda)\ge0$ for every $k$ and nonnegative $\lambda$.
+
+A permutation $\pi\in S_4$ relabels vertices, edges, and variables. Write $(\pi\lambda)_{\pi(i)}=\lambda_i$ and $(\pi k)_{\{\pi(i),\pi(j)\}}=k_{\{i,j\}}$. Relabeling words in [(8)](#eq:power) gives <a id="eq:symmetry"></a>
+
+$$
+C_{\pi k}(\pi\lambda)=C_k(\lambda).
+$$
+
+**Equation (12)**
+
+Therefore one representative per orbit suffices. Representatives are the lexicographically smallest indices in their orbits, using the edge order [(3)](#eq:edges). Exact enumeration partitions the 4096 indices into 276 orbits. Among the representatives, 36 have all monomial coefficients nonnegative. In each of the other 240, the only negative monomial is $\lambda^{\boldsymbol{1}}=\lambda_0\lambda_1\lambda_2\lambda_3$. The checks in Section 5 establish these finite assertions and the symmetry relation for all relabelings of each representative.
+
+<a id="exact-certificates-for-the-remaining-quartics"></a>
+
+## 4 Exact certificates for the remaining quartics
+
+The remaining step is a homogeneous polynomial inequality in four nonnegative variables. The following certificate criterion makes the finite computation explicit.
+
+<a id="lem:amgm"></a>
+
+**Lemma 3**. Let $P(x)=\sum_{a\in\mathcal A}d_a x^a-Hx^{\boldsymbol{1}}$, where $d_a>0$, $H>0$, $a\in\mathbb Z_{\ge0}^4$, and $|a|=4$. Suppose numbers $w_a$ satisfy <a id="eq:certificate"></a>
+
+$$
+0\le w_a\le4d_a,\qquad
+\sum_{a\in\mathcal A}w_a(a-\boldsymbol{1})=0,\qquad
+W:=\sum_{a\in\mathcal A}w_a\ge4H.
+$$
+
+**Equation (13)**
+
+Then $P(x)\ge0$ on $[0,\infty)^4$.
+
+*Proof.* Because $W\ge4H>0$, the nonzero $w_a/W$ form probability weights. For $x_i>0$, weighted AM–GM and the balance identity give 
+
+$$
+\sum_a w_a x^a\ \ge\ W\prod_a(x^a)^{w_a/W}
+ = W x^{\boldsymbol{1}}\ \ge\ 4H x^{\boldsymbol{1}}.
+$$
+
+ Since $4d_a-w_a\ge0$, adding $\sum_a(4d_a-w_a)x^a$ proves $4P(x)\ge0$. Continuity extends the conclusion to points with zero coordinates. ◻
+
+For a representative $k$ with a negative coefficient, write 
+
+$$
+C_k(\lambda)=\sum_{a\in\mathcal A_k}c_a\lambda^a-h\lambda^{\boldsymbol{1}},
+\qquad c_a>0,\quad h>0.
+$$
+
+ A row of the supplied JSON certificate gives four positive integers $s_0,s_1,s_2,s_3$. On making the bijective change $\lambda_i=s_ix_i$ of the nonnegative orthant, put <a id="eq:scales"></a>
+
+$$
+d_a=c_a\prod_{i=0}^3s_i^{a_i},\qquad H=h\prod_{i=0}^3s_i.
+$$
+
+**Equation (14)**
+
+All these numbers are integers. Define <a id="eq:gradient"></a>
+
+$$
+g_i=\sum_a d_a(a_i-1),\qquad R=-\min_{0\le i\le3}g_i,\qquad r_i=g_i+R.
+$$
+
+**Equation (15)**
+
+Homogeneity implies $\sum_i g_i=0$, hence $R\ge0$ and $r_i\ge0$. Start with $w_a=4d_a$ and, for each pure fourth power, replace <a id="eq:weights"></a>
+
+$$
+w_{4\mathbf e_i}=4d_{4\mathbf e_i}-r_i.
+$$
+
+**Equation (16)**
+
+The four pure monomials occur with positive coefficients in every required case; this is checked explicitly. No other weight is changed. The condition $r_i\le4d_{4\mathbf e_i}$ verifies the nonnegative resource bounds in [(13)](#eq:certificate). Balance also follows directly: 
+
+$$
+\sum_a w_a(a-\boldsymbol{1})
+=4g-\sum_{i=0}^3(g_i+R)(4\mathbf e_i-\boldsymbol{1})=0,
+$$
+
+ because $\sum_i(g_i+R)=4R$. The final condition is the nonnegative integer gap <a id="eq:gap"></a>
+
+$$
+G=\sum_a w_a-4H\ge0.
+$$
+
+**Equation (17)**
+
+The certificate stores $G$ as a decimal string; the checkers recompute it and test equality to that string as an additional consistency check. Only the scales are needed to construct the weights.
+
+For all 240 rows, the exact checks establish the hypotheses of Lemma [3](#lem:amgm); hence the representative coefficients are nonnegative. Equation [(12)](#eq:symmetry) transfers this to every Bernstein index. Equation [(11)](#eq:bernstein) proves Proposition [2](#prop:scalar), completing the proof of Theorem [1](#thm:matrix).
+
+<a id="reproduction-and-verification-boundary"></a>
+
+## 5 Reproduction and verification boundary
+
+The accompanying portable package contains the original exact checker `verify_rankone_n4.py`, the separately implemented checker `check_certificate.py`, and the common data file `rankone_n4_exact_scales.json`. Keep all three in the same directory and run with Python 3.8 or later:
+
+```
+python3 verify_rankone_n4.py
+python3 check_certificate.py
+```
+
+Only the Python standard library is required. Run without `-O` or `-OO`, and without `PYTHONOPTIMIZE`: assertions are part of both checkers. The second checker explicitly rejects optimized execution. It writes `exact_audit_result.json` beside itself, so its directory must be writable. Neither command accesses the network.
+
+The first checker constructs [(8)](#eq:power), uses [(10)](#eq:K), enumerates orbit representatives, and verifies the scales and weights. The second derives the power-to-Bernstein conversion by exact rational Gaussian elimination, constructs the two sampling sums in separate loops with their original probabilities, and reconstructs all 4096 coefficient polynomials. It also checks [(12)](#eq:symmetry) explicitly, as well as the orbit coverage, exact required certificate-row set, resource bounds, balance, and gaps.
+
+Both checkers were rerun for this note and passed. The exact audit returned the following counts:
+
+- 130 nonzero joint edge-and-vertex monomials in $F$
+
+- 4096 Bernstein indices in 276 vertex-permutation orbits
+
+- 36 coefficientwise nonnegative orbits, covering 370 indices
+
+- 240 weighted AM–GM orbits, covering 3726 indices
+
+- A zero gap only for the representative $(3,3,3,3,3,3)$
+
+The zero gap is allowed: [(17)](#eq:gap) requires nonnegativity, not strict positivity. It is not an equality classification for the matrix theorem.
+
+The certificate data file used by both checkers has SHA-256 digest
+
+14ddfdbca54628f35920459e510773093  
+00932e8978b3371063073e069a32067.
+
+The two displayed lines concatenate to one 64-character digest; the final punctuation is not part of it. A machine-readable manifest is included in the package. The digest identifies the data; it does not by itself verify the mathematical claim.
+
+Numerical optimization was used in the preceding exploratory work to find the scales. No optimization output, floating-point coefficient table, numerical tolerance, or sampling assertion is used to accept the final certificates. The mathematical proof consists of the reduction above and a finite, fully specified exact verification. It still requires trust in the stated algebra, the checkers, and the Python execution environment. The verification is an exact computational certificate, rather than a proof-assistant formalization.
+
+<a id="edge-cases-and-limitations"></a>
+
+## 6 Edge cases and limitations
+
+If one of the $A_i$ is zero, every without-replacement product is zero, and [(2)](#eq:matrix) is immediate. The proof nevertheless includes these cases. Vanishing inner products are covered by the closed cube in Proposition [2](#prop:scalar); no division by an inner product occurs. Arbitrarily unequal or zero eigenvalue scales are allowed. Complex phases disappear upon taking the sole singular value in [(7)](#eq:reduction). The dimension $d=1$ is included.
+
+The constant $1$ in the comparison of the two averages cannot be increased uniformly in this class: setting all four matrices equal to the same nonzero rank-one positive-semidefinite matrix makes every product identical, giving equality. No broader classification of equality is asserted.
+
+The rank-one factorization is essential to this argument. For general positive-semidefinite matrices, the product norm does not reduce to a scalar product of adjacent edge weights. Expanding each matrix as a sum of rank-one matrices and using the triangle inequality gives upper bounds for both averages, which does not yield the required comparison between those averages. The certificate therefore supplies no reduction to arbitrary rank. Nor does it establish [(1)](#eq:general) for $n>4$ or $m>4$.
+
+The result is a reproducible restricted-case certificate. The general positive-semidefinite $m\ge4$ problem remains unresolved by this work.
+
+<a id="acknowledgments-and-use-of-generative-ai"></a>
+
+## Acknowledgments and use of generative AI
+
+OpenAI generative AI tools were used to help draft the manuscript.
+
+## References
+
+<a id="ref-duchi"></a>
+
+**\[1\]**
+
+J. C. Duchi. Commentary on “Towards a Noncommutative Arithmetic-Geometric Mean Inequality” by B. Recht and C. Ré. *Proceedings of the 25th Annual Conference on Learning Theory*, 23:11.25–11.27, 2012. <https://proceedings.mlr.press/v23/duchi12/duchi12.pdf>.
+
+<a id="ref-ikw"></a>
+
+**\[2\]**
+
+A. Israel, F. Krahmer, and R. Ward. An arithmetic-geometric mean inequality for products of three matrices. *Linear Algebra and its Applications* **488** (2016), 1–12. <https://doi.org/10.1016/j.laa.2015.09.013>. Preprint: arXiv:1411.0333, version 4, 19 June 2015.
+
+<a id="ref-ggtw"></a>
+
+**\[3\]**
+
+B. Georgiev, J. Gómez-Serrano, T. Tao, and A. Z. Wagner. *Mathematical exploration and discovery at scale*. arXiv:2511.02864, version 1, 3 November 2025. Section 28, Problem 6.47. <https://arxiv.org/html/2511.02864v1>.
+
+<a id="ref-rr"></a>
+
+**\[4\]**
+
+B. Recht and C. Ré. Toward a Noncommutative Arithmetic-geometric Mean Inequality: Conjectures, Case-studies, and Consequences. *Proceedings of the 25th Annual Conference on Learning Theory*, 23:11.1–11.24, 2012. <https://proceedings.mlr.press/v23/recht12.html>.

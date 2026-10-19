@@ -1,0 +1,45 @@
+{
+  "project": "polygon_ehrhart",
+  "prepared_utc_date": "2026-10-10",
+  "purpose": "Computational supplement to the manuscript at ../../latex/polygon_ehrhart/main.tex",
+  "runtime": {
+    "python": "3.12.14",
+    "assertions_enabled": true,
+    "test_working_directory": "Unrelated temporary directory"
+  },
+  "verification_status": "All supplied checkers rerun successfully",
+  "checks": [
+    {
+      "script": "verify_certificate.py",
+      "exit_code": 0
+    },
+    {
+      "script": "independent_audit.py",
+      "exit_code": 0
+    }
+  ],
+  "review_boundary": "Computational reproduction only; no human review, external peer review, or novelty assessment is attested",
+  "documentation_only_changes": [],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3231,
+      "sha256": "95fd91a8f7911e39887ae9e22f4ad3de9ab561f0323e23294e7620f2fa2a4aad"
+    },
+    {
+      "path": "independent_audit.py",
+      "bytes": 3442,
+      "sha256": "c7839b9946ed658e5cd4d5b73f023bbec047da68e08fde277791b17b1d0afa2f"
+    },
+    {
+      "path": "independent_results.json",
+      "bytes": 23269,
+      "sha256": "180d560eea2fdb16418285106c7101a016ef54dd92ae7a7b1d9daed902932a41"
+    },
+    {
+      "path": "verify_certificate.py",
+      "bytes": 3199,
+      "sha256": "596977b6e7a62594b6cfd8c0c75017ca2c69cb363486c98a36e31906f21fdeca"
+    }
+  ]
+}
